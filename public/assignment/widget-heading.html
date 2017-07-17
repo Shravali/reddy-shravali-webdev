@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../vendor/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="spr-glyph">
+            <a href="widget-list.html">
+                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Edit Header Widget</a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+    <label for="name">Name</label>
+    <input name="name"
+           id="name"
+           type="text"
+           placeholder="Name of Widget"
+           class="form-control"/>
+    <label for="desc">Text</label>
+    <input name="desc"
+           type="text"
+           value="US Senate Reaches Compromise on Emergency Zika Funding"
+           id="desc"
+           placeholder="Page Title"
+           class="form-control"/>
+    <label for="size">Size</label>
+    <input name="size"
+           type="number"
+           value="3"
+           id="size"
+           placeholder="Enter size of header"
+           class="form-control"/>
+
+    <a class="btn btn-primary btn-block"
+       href="widget-list.html"
+       role="button">Update</a>
+    <a class="btn btn-danger btn-block"
+       href="widget-list.html"
+       role="button">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="spr-navbar" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="profile.html">
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
