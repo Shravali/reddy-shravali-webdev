@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WebAppMaker">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Theme Template for Bootstrap</title>
+
+    <link href="css/styles.css" rel="stylesheet"/>
+    <script src="../vendor/angular/angular.min.js" type="text/javascript"></script>
+    <script src="../vendor/angular-route/angular-route.min.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!--<script src="home.html"></script>-->
+
+
+    <!--Services-->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <script src="services/page.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+
+    <!--page controllers -->
+    <script src="views/page/controllers/page-list.controller.client.js"></script>
+    <script src="views/page/controllers/page-new.controller.client.js"></script>
+    <script src="views/page/controllers/page-edit.controller.client.js"></script>
+
+    <!--page templates -->
+    <!--<script src="views/page/templates/page-list.view.client.html"></script>-->
+    <!--<script src="views/page/templates/page-edit.view.client.html"></script>-->
+    <!--<script src="views/page/templates/page-new.view.client.html"></script>-->
+
+
+    <!--user controllers -->
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/user/controllers/register.controller.client.js"></script>
+
+    <!--website controllers-->
+    <script src="views/website/controllers/website-list.controller.client.js"></script>
+    <script src="views/website/controllers/website-edit.controller.client.js"></script>
+    <script src="views/website/controllers/website-new.controller.client.js"></script>
+
+
+    <!--widget controllers-->
+    <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-new.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../vendor/css/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../vendor/css/bootstrap/css/theme.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div ng-view></div>
+
+</body>
+</html>

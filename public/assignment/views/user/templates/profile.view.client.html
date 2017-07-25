@@ -1,0 +1,79 @@
+<div class="jga jga-profile">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Profile</a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+    <label for="firstName">First Name</label>
+    <input name="firstName"
+           ng-model="model.user.firstName"
+           placeholder="Alice"
+           class="form-control"
+           id="firstName"/>
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName"
+           ng-model="model.user.lastName"
+           placeholder="Wonderland"
+           class="form-control"
+           id="lastName"/>
+
+    <label for="username">Username</label>
+    <input name="username"
+           ng-model="model.user.username"
+           readonly
+           value="alice"
+           placeholder="alice"
+           class="form-control"
+           id="username"/>
+
+    <label for="email">Email</label>
+    <input name="email"
+           type="email"
+           placeholder="alice@wonderland.com"
+           class="form-control"
+           id="email"/>
+
+    <label for="dob">Date of Birth</label>
+    <input name="dob"
+           type="date"
+           class="form-control"
+           id="dob"/>
+
+    <a class="btn btn-default btn-primary btn-block"
+       href="#!/user/{{model.userId}}/website"
+       role="button">Websites</a>
+    <a class="btn btn-default btn-danger btn-block"
+       href="#!/login"
+       role="button">Logout</a>
+
+    <a class="btn btn-default btn-danger btn-block"
+       ng-click="model.unregister()"
+       role="button">Unregister</a>
+
+    <a class="btn btn-default btn-primary btn-block"
+       ng-click="model.updateUser(model.user)"
+       role="button">Update</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="spr-navbar" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+</div>

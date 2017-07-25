@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="../vendor/css/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="css/styles.css" rel="stylesheet"/>
-</head>
-<body>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,7 +7,6 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-3 visible-lg sr-split-view-left">
@@ -26,61 +15,28 @@
                     <div class="row">
                         <div class="col-xs-10">Name</div>
                         <div class="col-xs-2">
-                            <a href="website-new.html">
+                            <a href="#!/user/{{model.userId}}/website">
                                 <span class="glyphicon glyphicon-plus pull-right"></span>
                             </a>
                         </div>
                     </div>
                 </li>
-
-                <li class="list-group-item">
+                <li ng-repeat="website in model.websites" class="list-group-item">
                     <div class="row">
-                        <div class="col-xs-10">CNN</div>
-                        <div class="col-xs-2">
-                            <a href="website-edit.html">
-                                <span class="glyphicon glyphicon-pencil pull-right"></span>
+                        <div class="col-xs-10">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                                {{website.name}}
                             </a>
                         </div>
-                    </div>
-
-
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-10">Facebook</div>
                         <div class="col-xs-2">
-                            <a href="website-edit.html">
-                                <span class="glyphicon glyphicon-pencil pull-right"></span>
-                            </a>
+
                         </div>
                     </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-10">Twitter</div>
-                        <div class="col-xs-2">
-                            <a href="website-edit.html">
-                                <span class="glyphicon glyphicon-pencil pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-10">Amazon</div>
-                        <div class="col-xs-2">
-                            <a href="website-edit.html">
-                                <span class="glyphicon glyphicon-pencil pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-
-
-                </li>
             </ul>
         </div>
         <div class="col-xs-12 col-lg-9 sr-split-view-right"><label for="name">Name</label>
             <input name="name"
+                   ng-model="model.website.name"
                    id="name"
                    type="text"
                    placeholder="Facebook"
@@ -89,15 +45,13 @@
             <textarea name="desc"
                       rows="5"
                       id="desc"
-                      type="text"
                       placeholder="A social media website that allows users to connect with anyone around the globe"
                       class="form-control"></textarea>
 
             <a class="btn btn-primary btn-block"
-               href="website-list.html"
-               role="button">Create</a>
+               ng-click="model.createWebsite()">Create</a>
             <a class="btn btn-danger btn-block"
-               href="website-list.html"
+               href="#!/user/{{model.userId}}/website"
                role="button">Cancel</a></div>
     </div>
 
@@ -107,7 +61,7 @@
     <div class="container-fluid">
         <div class="spr-navbar" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="profile.html">
+                <li><a href="#!/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user pull-right"></span>
                 </a></li>
             </ul>
@@ -115,6 +69,3 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-
-</body>
-</html>
