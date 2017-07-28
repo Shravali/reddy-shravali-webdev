@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .service("websiteService", websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
 
         var websites = [
             {"_id": "123", "name": "Facebook", "developerId": "456", "description": "Lorem"},
@@ -45,10 +45,9 @@
         }
 
         function createWebsite(userId, website) {
-            website._id = (new Date()).getTime() + "";
-            website.developerId = userId;
-            websites.push(website);
-            return website;
+           var url = "/api/user/:userId/website";
+           $http.post(url);
+
         }
 
         function updateWebsite(websiteId, website) {

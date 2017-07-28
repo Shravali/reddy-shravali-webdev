@@ -13,7 +13,10 @@
         model.unregister = unregister;
 
         function init() {
-            model.user = userService.findUserById(userId);
+            userService.findUserById(userId)
+                .then(function (response) {
+                    model.user = response.data;
+                });
         }
         init();
 
@@ -22,8 +25,16 @@
         }
 
         function unregister() {
-            userService.deleteUser(model.userId);
-            $location.url("/login");
+            userService.deleteUser(model.userId)
+                .then(function(response) {
+                if(response.status(404)){
+                    model.errorMessage = "User not found";
+                }
+                else{
+                    $location.url("/login");
+                }
+            });
+
 
         }
     }
