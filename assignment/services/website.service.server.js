@@ -1,4 +1,4 @@
-module.exports = function(app) {
+var app = ("../../express");
 
 
     app.get("/api/user/:userId/website", findWebsitesForUser);
@@ -47,4 +47,3 @@ module.exports = function(app) {
 
         res.json(sites);
     }
-};
