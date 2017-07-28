@@ -29,13 +29,18 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
+    console.log("in delete server")
+    var userId=req.params.userId;
     for (var u in users) {
         if (users[u]._id === userId) {
             users.splice(u, 1);
-            return;
+           // return true;
+          res.sendStatus(200);
+          return;
         }
-    }
 
+    }
+    // return false;
     res.sendStatus(404);
 }
 

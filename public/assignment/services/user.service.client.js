@@ -19,7 +19,7 @@
 
         function deleteUser(userId) {
             var url = "/api/user/" + userId;
-            return $http.delete(url, user);
+            return $http.delete(url);
         }
 
         function updateUser(userId, user) {

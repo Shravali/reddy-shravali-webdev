@@ -27,11 +27,14 @@
         function unregister() {
             userService.deleteUser(model.userId)
                 .then(function(response) {
-                if(response.status(404)){
-                    model.errorMessage = "User not found";
+                    var result=response.data;
+
+                if(result){
+
+                    $location.url("/login");
                 }
                 else{
-                    $location.url("/login");
+                    model.errorMessage = "User not found";
                 }
             });
 
