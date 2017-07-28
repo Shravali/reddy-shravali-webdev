@@ -1,4 +1,4 @@
-var app = ("../../express");
+var app = require("../../express");
 var users = [
     {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder", isAdmin: true},
     {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
@@ -47,11 +47,8 @@ function createUser(req, res) {
 }
 
 function findUserByCredentials(req, res) {
-    console.log("in server");
     var username = req.query.username;
     var password = req.query.password;
-    console.log("username", username);
-    console.log("password", password);
     if (username && password) {
         for (var u in users) {
             var _user = users[u];

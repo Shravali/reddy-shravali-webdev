@@ -1,4 +1,4 @@
-var app = ("../../express");
+var app = require("../../express");
 
 
     app.get("/api/user/:userId/website", findWebsitesForUser);
