@@ -15,20 +15,19 @@
         init();
 
         function registerUser(user) {
-            console.log("here");
             userService.findUserByUsername(user.username)
                 .then(function (response) {
                     var _user = response.data;
                     if (_user === "0") {
-                        console.log("here!!!!!");
                         return userService.createUser(user);
                     } else {
-                        model.error = "User already exists";
+                        return model.error = "User already exists";
+                        //to-do: find a way to not go into next .then if its return error
                     }
                 })
                 .then(function (response) {
                     _user = response.data;
-                    $location.url("/user/" + user._id);
+                    $location.url("/user/" + _user._id);
 
                 })
 

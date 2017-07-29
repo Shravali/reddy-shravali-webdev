@@ -15,6 +15,7 @@
         function init() {
             userService.findUserById(userId)
                 .then(function (response) {
+                    console.log(response.data);
                     model.user = response.data;
                 });
         }
@@ -22,15 +23,14 @@
 
         function updateUser(user) {
             userService.updateUser(user._id, user);
+            console.log(user);
         }
 
         function unregister() {
             userService.deleteUser(model.userId)
                 .then(function(response) {
                     var result=response.data;
-
                 if(result){
-
                     $location.url("/login");
                 }
                 else{

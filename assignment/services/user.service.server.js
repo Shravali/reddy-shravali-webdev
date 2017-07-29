@@ -48,6 +48,7 @@ function createUser(req, res) {
     var user = req.body;
     user._id = (new Date()).getTime() + "";
     users.push(user);
+    console.log(req.body);
     res.send(user);
 }
 
@@ -71,7 +72,6 @@ function findUserByCredentials(req, res) {
         }
     }
     res.send("0");
-    //console.log("here");
 }
 
 function findUserByUsername() {

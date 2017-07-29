@@ -35,8 +35,7 @@
         }
 
         function findUserByUsername(username) {
-            console.log("the username in service", username);
-            var url = "/api/user/";
+            var url = "/api/user?username="+username;
             return $http.get(url);
         }
 
