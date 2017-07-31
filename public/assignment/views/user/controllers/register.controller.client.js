@@ -9,7 +9,6 @@
         model.registerUser = registerUser;
 
         function init() {
-            console.log("register controller");
         }
 
         init();

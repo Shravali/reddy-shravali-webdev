@@ -48,8 +48,10 @@
                       placeholder="A social media website that allows users to connect with anyone around the globe"
                       class="form-control"></textarea>
 
+
+
             <a class="btn btn-primary btn-block"
-               ng-click="model.createWebsite()">Create</a>
+               ng-click="model.createWebsite(model.website)">Create</a>
             <a class="btn btn-danger btn-block"
                href="#!/user/{{model.userId}}/website"
                role="button">Cancel</a></div>

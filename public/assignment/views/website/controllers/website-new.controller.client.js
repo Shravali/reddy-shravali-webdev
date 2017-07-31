@@ -11,14 +11,24 @@
         model.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findWebsitesByUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            // websiteService.findWebsiteById(websiteId)
+            //     .then(function (response) {
+            //         model.website = response.data;
+            //     });
+            websiteService.findWebsitesByUser(model.userId)
+                .then(function (websites) {
+                    model.websites = websites;
+                });
         }
         init();
 
-        function createWebsite() {
-            websiteService.createWebsite(model.userId, model.website);
-            $location.url("/user/"+ model.userId + "/website/" )
+        function createWebsite(website) {
+            websiteService
+                .createWebsite(model.userId, website)
+                .then(function (){
+                    $location.url("/user/"+ model.userId + "/website" );
+
+            });
 
         }
 

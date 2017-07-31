@@ -29,7 +29,6 @@ function updateUser(req, res) {
 }
 
 function deleteUser(req, res) {
-    console.log("in delete server")
     var userId=req.params.userId;
     for (var u in users) {
         if (users[u]._id === userId) {

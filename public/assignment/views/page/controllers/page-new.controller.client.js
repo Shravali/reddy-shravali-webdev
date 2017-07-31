@@ -12,17 +12,27 @@
         model.createPage = createPage;
 
         function init() {
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            pageService
+                .findPagesByWebsiteId(model.websiteId)
+                .then(function (pages) {
+                    model.pages = pages;
+                });
+            // model.page = pageService.findPageById(model.pageId);
 
         }
+
         init();
 
-        function createPage() {
-            pageService.createPage(model.websiteId, model.page);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+        function createPage(page) {
+            pageService
+                .createPage(model.websiteId, page)
+                .then(function () {
+                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page");
+                });
+
         }
 
     }
+
 
 })();

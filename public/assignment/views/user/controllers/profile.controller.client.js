@@ -15,15 +15,23 @@
         function init() {
             userService.findUserById(userId)
                 .then(function (response) {
-                    console.log(response.data);
                     model.user = response.data;
                 });
         }
         init();
 
         function updateUser(user) {
-            userService.updateUser(user._id, user);
-            console.log(user);
+            userService.updateUser(user._id, user)
+                .then(function(response) {
+                    var result=response.data;
+                    if(result){
+                        $location.url("/user/" + model.userId);
+                    }
+                    else{
+                        model.errorMessage = "User not found";
+                    }
+                });
+
         }
 
         function unregister() {

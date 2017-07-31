@@ -17,25 +17,37 @@
         // model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
 
         function init() {
-            model.widget = widgetService.findWidgetById(model.widgetId);
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-
+           // model.widget = widgetService.findWidgetById(model.widgetId);
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
         }
 
         init();
 
 
         function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId, widget);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId
-                + "/page/" + model.pageId + "/widget");
-
+            widgetService.updateWidget(model.widgetId, widget)
+                .then(function () {
+                    $location.url("/user/" + model.userId + "/website/" + model.websiteId
+                        + "/page/" + model.pageId + "/widget");
+                });
         }
 
         function deleteWidget() {
-            widgetService.deleteWidget(model.widgetId);
-            $location.url("/user/" + model.userId + "/website/" + model.websiteId
-                + "/page/" + model.pageId + "/widget");
+            widgetService.deleteWidget(model.widgetId)
+                .then(function(response) {
+                    var result=response.data;
+                    if(result){
+                        $location.url("/user/" + model.userId + "/website/" + model.websiteId
+                            + "/page/" + model.pageId + "/widget");
+                    }
+                    // else{
+                    //     model.errorMessage = "User not found";
+                    // }
+                });
+
 
         }
 

@@ -5,8 +5,6 @@
 
     function userService($http) {
 
-
-
         var api = {
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,

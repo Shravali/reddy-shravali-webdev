@@ -14,7 +14,10 @@
         model.editImage = editImage;
         model.editYoutube = editYoutube;
         function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+            widgetService.findWidgetsByPageId(model.pageId)
+                .then(function (widgets) {
+                    model.widgets = widgets;
+                });
             model.widget = {};
 
         }
@@ -23,17 +26,30 @@
 
         function editHeader() {
             model.widget.widgetType = "HEADING";
-            model.widget = widgetService.createWidget(model.pageId, model.widget);
+            widgetService
+                .createWidget(model.pageId, model.widget)
+                .then(function (response) {
+                    model.widget = response.data;
+                });
+
         }
 
         function editImage() {
             model.widget.widgetType = "IMAGE";
-            model.widget = widgetService.createWidget(model.pageId, model.widget);
+            widgetService
+                .createWidget(model.pageId, model.widget)
+                .then(function (response) {
+                    model.widget = response.data;
+                });
         }
 
         function editYoutube() {
             model.widget.widgetType = "YOUTUBE";
-            model.widget = widgetService.createWidget(model.pageId, model.widget);
+            widgetService
+                .createWidget(model.pageId, model.widget)
+                .then(function (response) {
+                    model.widget = response.data;
+                });
         }
 
 
