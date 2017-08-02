@@ -27,10 +27,10 @@
 
 
         function updateWebsite(website) {
-            websiteService.updateWebsite(model.websiteId, website);
-                // .then(function () {
-                //     $location.url("/user/" + model.userId + "/website");
-                // });
+            websiteService.updateWebsite(model.websiteId, website)
+                .then(function () {
+                    $location.url("/user/" + model.userId + "/website");
+                });
 
         }
 
