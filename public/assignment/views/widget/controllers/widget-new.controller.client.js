@@ -4,7 +4,7 @@
         .module("WebAppMaker")
         .controller("widgetChooserController", widgetChooserController);
 
-    function widgetChooserController($routeParams, widgetService) {
+    function widgetChooserController($routeParams, widgetService, $location) {
         var model = this;
         model.userId = $routeParams["userId"];
         model.websiteId = $routeParams["wid"];
@@ -21,6 +21,7 @@
             model.widget = {};
 
         }
+
         init();
 
 
@@ -30,7 +31,11 @@
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
                     model.widget = response.data;
-                });
+                })
+                .then(function () {
+                    $location.url("user/" + model.userId + "/website/" +
+                        model.websiteId + "/page/" + model.pageId + "/widget/" + model.widget._id);
+                })
 
         }
 
@@ -40,7 +45,12 @@
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
                     model.widget = response.data;
-                });
+                })
+                .then(function () {
+                    $location.url("user/" + model.userId + "/website/" +
+                        model.websiteId + "/page/" + model.pageId + "/widget/" + model.widget._id);
+                })
+
         }
 
         function editYoutube() {
@@ -49,11 +59,13 @@
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
                     model.widget = response.data;
-                });
+                })
+                .then(function () {
+                    $location.url("user/" + model.userId + "/website/" +
+                        model.websiteId + "/page/" + model.pageId + "/widget/" + model.widget._id);
+                })
+
         }
-
-
-
 
 
     }

@@ -18,6 +18,10 @@
 
         function init() {
            // model.widget = widgetService.findWidgetById(model.widgetId);
+            widgetService.findWidgetById(model.widgetId)
+                .then(function (response) {
+                    model.widget = response.data;
+                });
             widgetService.findWidgetsByPageId(model.pageId)
                 .then(function (widgets) {
                     model.widgets = widgets;

@@ -1,4 +1,6 @@
 var app = require("../../express");
+var multer = require('multer');
+var upload = multer({ dest: __dirname+'/../../public/uploads' });
 var widgets = [
     {"_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
     {"_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -21,14 +23,57 @@ app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
+app.put("/api/:pageId/widget", sortWidget);
+app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+function uploadImage(req, res) {
+
+    var widgetId      = req.body.widgetId;
+    var width         = req.body.width;
+    var myFile        = req.file;
+
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname  = myFile.originalname; // file name on user's computer
+    var filename      = myFile.filename;     // new file name in upload folder
+    var path          = myFile.path;         // full path of uploaded file
+    var destination   = myFile.destination;  // folder where file is saved to
+    var size          = myFile.size;
+    var mimetype      = myFile.mimetype;
+
+    for (var w in widgets) {
+        if (widgets[w]._id === widgetId) {
+            var widget = widgets[w];
+        }
+    }
+
+    widget.url = '/uploads/' + filename;
+
+    var callbackUrl   = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+
+    res.redirect(callbackUrl);
+}
+
+function sortWidget(req, res) {
+    var start = req.query.initial;
+    var stop = req.query.final;
+    var widget = widgets[start];
+    console.log(start);
+    console.log(stop);
+    widgets.splice(start, 1);
+    widgets.splice(stop, 0, widget);
+    response.json(widgets);
+}
 
 function createWidget(req, res) {
-    var page = req.body;
+    var widget = req.body;
     var pageId = req.params.pageId;
     widget._id = (new Date()).getTime() + "";
     widget.pageId = pageId;
     widgets.push(widget);
-    res.json(page);
+    res.json(widget);
 }
 
 function findAllWidgetsForPage(req, res) {
@@ -59,7 +104,7 @@ function updateWidget(req, res) {
     var widget = req.body;
     for (var w in widgets) {
         if (widgets[w]._id === widgetId) {
-            widget[w] = widget;
+            widgets[w] = widget;
             res.send(widget);
             return;
         }
