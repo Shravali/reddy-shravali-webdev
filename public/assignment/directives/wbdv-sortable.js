@@ -10,15 +10,16 @@
             var initial = -1;
             $(element).sortable({
                 start: function (event, ui) {
-                    // console.log();
                     initial = $(ui.item).index();
-                    console.log(initial);
                 },
                 stop: function (event, ui) {
                     var final = $(ui.item).index();
                     console.log(final);
                     var pageId = $routeParams.pid;
-                    $http.put("/page/" + pageId + "/widget?initial=" + initial + "&final=" + final);
+                    $http.put("/api/page/" + pageId + "/widget?initial=" + initial + "&final=" + final)
+                        .then(function(response) {
+                            return response.data;
+                        });
                 }
             });
         }

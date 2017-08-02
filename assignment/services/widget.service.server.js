@@ -23,7 +23,7 @@ app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
 app.get("/api/widget/:widgetId", findWidgetById);
 app.put("/api/widget/:widgetId", updateWidget);
 app.delete("/api/widget/:widgetId", deleteWidget);
-app.put("/api/:pageId/widget", sortWidget);
+app.put("/api/page/:pageId/widget", sortWidget);
 app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
 function uploadImage(req, res) {
@@ -57,6 +57,7 @@ function uploadImage(req, res) {
 }
 
 function sortWidget(req, res) {
+
     var start = req.query.initial;
     var stop = req.query.final;
     var widget = widgets[start];
@@ -64,7 +65,7 @@ function sortWidget(req, res) {
     console.log(stop);
     widgets.splice(start, 1);
     widgets.splice(stop, 0, widget);
-    response.json(widgets);
+    res.json(widgets);
 }
 
 function createWidget(req, res) {
