@@ -1,4 +1,5 @@
 var app = require("../../express");
+var pageModel = require('../model/page/page.model.server');
 var pages = [
     {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
     {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
@@ -34,12 +35,16 @@ function findAllPagesForWebsite(req, res) {
 }
 
 function findPageById(req, res) {
-    var pageId = req.params.pageId;
-    for (var p in pages) {
-        if (pages[p]._id === pageId) {
-            res.json(pages[p]);
-        }
-    }
+    pageModel
+        .findPageById(req.params.pageId)
+        .then(function (page) {
+            res.json(page);
+        });
+    // for (var p in pages) {
+    //     if (pages[p]._id === pageId) {
+    //         res.json(pages[p]);
+    //     }
+    // }
     // res.sendStatus(404);
 
 }
@@ -47,26 +52,30 @@ function findPageById(req, res) {
 function updatePage(req, res) {
     var pageId = req.params.pageId;
     var page = req.body;
-    for (var p in pages) {
-        if (pages[p]._id === pageId) {
-            pages[p] = page;
-            res.send(page);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    pageModel
+        .updatePage(pageId, page)
+        .then(function (status) {
+            res.json(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 
 }
 function deletePage(req, res) {
     var pageId = req.params.pageId;
-    for (var p in pages) {
-        if (pages[p]._id === pageId) {
-            pages.splice(p, 1);
+    pageModel
+        .deletePage(pageId)
+        .then(function (status) {
             res.sendStatus(200);
-            return;
-        }
-    }
-    res.sendStatus(404);
+        });
+    // for (var p in pages) {
+    //     if (pages[p]._id === pageId) {
+    //         pages.splice(p, 1);
+    //         res.sendStatus(200);
+    //         return;
+    //     }
+    // }
+    // res.sendStatus(404);
 
 }
 

@@ -1302,7 +1302,7 @@ var csp = function() {
  * @description
  * Use this directive to force the angular.element library.  This should be
  * used to force either jqLite by leaving ng-jq blank or setting the name of
- * the jquery variable under window (eg. jQuery).
+ * the lectures variable under window (eg. jQuery).
  *
  * Since angular looks for this directive when it is loaded (doesn't wait for the
  * DOMContentLoaded event), it must be placed on an element that comes before the script
@@ -8945,7 +8945,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
     function compile($compileNodes, transcludeFn, maxPriority, ignoreDirective,
                         previousCompileContext) {
       if (!($compileNodes instanceof jqLite)) {
-        // jquery always rewraps, whereas we need to preserve the original selector so that we can
+        // lectures always rewraps, whereas we need to preserve the original selector so that we can
         // modify it.
         $compileNodes = jqLite($compileNodes);
       }
@@ -16824,7 +16824,7 @@ function $ParseProvider() {
  *
  * - $q is integrated with the {@link ng.$rootScope.Scope} Scope model observation
  *   mechanism in angular, which means faster propagation of resolution or rejection into your
- *   models and avoiding unnecessary browser repaints, which would result in flickering UI.
+ *   model and avoiding unnecessary browser repaints, which would result in flickering UI.
  * - Q has many more features than $q, but that comes at a cost of bytes. $q is tiny, but contains
  *   all the important functionality needed for common async tasks.
  *
@@ -33673,7 +33673,7 @@ if (window.angular.bootstrap) {
   return;
 }
 
-// try to bind to jquery now so that one can write jqLite(fn)
+// try to bind to lectures now so that one can write jqLite(fn)
 // but we will rebind on bootstrap again.
 bindJQuery();
 

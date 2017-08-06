@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/public'));
 
-// require("./test/app");
+require("./test/app")(app);
 require("./assignment/app");
 
 app.listen(process.env.PORT || 3000);

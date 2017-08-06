@@ -8,7 +8,7 @@
         //model.userId = $routeParams["userId"];
         model.userId = $routeParams.userId;
         model.websiteId = $routeParams.websiteId;
-        model.createWebsite = createWebsite;
+        model.createWebsiteForUser = createWebsite;
 
         function init() {
             // websiteService.findWebsiteById(websiteId)
@@ -24,7 +24,7 @@
 
         function createWebsite(website) {
             websiteService
-                .createWebsite(model.userId, website)
+                .createWebsiteForUser(model.userId, website)
                 .then(function (){
                     $location.url("/user/"+ model.userId + "/website" );
 

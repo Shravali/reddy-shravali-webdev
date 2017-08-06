@@ -17,7 +17,7 @@
             userService.findUserByUsername(user.username)
                 .then(function (response) {
                     var _user = response.data;
-                    if (_user === "0") {
+                    if (_user === null) {
                         return userService.createUser(user);
                     } else {
                         return model.error = "User already exists";
