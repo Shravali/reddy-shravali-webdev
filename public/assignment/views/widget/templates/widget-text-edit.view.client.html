@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Edit Text Widget</a>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
 
-</body>
-</html>
+<div class="container-fluid">
+    <label for="text">Text</label>
+    <input ng-model="model.widget.text"
+           class="form-control"
+           id="text"/>
+    <label for="rows">Rows</label>
+    <input ng-model="model.widget.rows"
+           class="form-control"
+           id="rows"
+           type="number"/>
+    <label for="place">Placeholder</label>
+    <input ng-model="model.widget.placeholder"
+           id="place"
+           class="form-control"/>
+    <label for="format">Formatted</label>
+    <input ng-model="model.widget.formatted"
+           id="format"
+           type="checkbox"/>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="spr-navbar" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!/user/{{model.user}}">
+                    <span class="glyphicon glyphicon-user pull-right"></span>
+                </a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

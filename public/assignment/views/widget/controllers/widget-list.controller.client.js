@@ -11,6 +11,7 @@
         model.pageId = $routeParams["pid"];
         model.trustThisContent = trustThisContent;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        model.trustHtmlContent = trustHtmlContent;
 
 
         function init() {
@@ -26,6 +27,10 @@
 
         }
 
+        function trustHtmlContent(htmlContent) {
+            return $sce.trustAsHtml(htmlContent);
+        }
+
         function getYouTubeEmbedUrl(youTubeLink) {
             var embedUrl = "https://www.youtube.com/embed/";
             var linkParts = youTubeLink.split('/');
@@ -37,4 +42,4 @@
 
     }
 
-})();
+});

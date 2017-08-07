@@ -22,12 +22,11 @@ function updateWebsite(websiteId, website){
 
 function createWebsiteForUser(userId, website) {
     website._user = userId;
-    return websiteModel
-        .create(website)
-        .then(function (website) {
-            return userModel
-                .addWebsite(userId, website._id);
-        });
+    return websiteModel.create(website);
+        // .then(function (website) {
+        //     return userModel
+        //         .addWebsite(userId, website._id);
+        // });
 }
 
 function findAllWebsitesForUser(userId) {

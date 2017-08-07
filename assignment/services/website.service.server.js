@@ -22,11 +22,12 @@ app.delete("/api/website/:websiteId", deleteWebsite);
 function createWebsite(req, res) {
     var website = req.body;
     var userId = req.params.userId;
-    // website.developerId = userId;
     websiteModel
         .createWebsiteForUser(userId, website)
         .then(function (website) {
             res.json(website);
+        }, function (err) {
+            res.sendStatus(500).send(err);
         });
     // website._id = (new Date()).getTime() + "";
     //
@@ -49,17 +50,12 @@ function findWebsiteById(req, res) {
 }
 
 function findAllWebsitesForUser(req, res) {
-   var userId = req.params.userId;
+    var userId = req.params.userId;
 
-    var sites = [];
-
-    for (var w in websites) {
-        if (websites[w].developerId === userId) {
-            sites.push(websites[w]);
-        }
-    }
-
-    res.json(sites);
+    websiteModel.findAllWebsitesForUser(userId)
+        .then(function (websites) {
+            res.json(websites);
+        });
 }
 
 function updateWebsite(req, res) {
