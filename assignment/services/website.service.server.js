@@ -40,6 +40,9 @@ function findWebsiteById(req, res) {
         .findWebsiteById(req.params.websiteId)
         .then(function (website) {
             res.json(website);
+        },
+        function (err) {
+            res.sendStatus(404).send(err);
         });
     // for (var w in websites) {
     //     if (websites[w]._id === req.params.websiteId) {
@@ -81,17 +84,10 @@ function updateWebsite(req, res) {
 
 function deleteWebsite(req, res) {
     var websiteId = req.params.websiteId;
+    var userId = req.params.userId;
     websiteModel
-        .deleteWebsite(websiteId)
+        .deleteWebsite(userId, websiteId)
         .then(function (status) {
-            res.sendStatus(200);
+            return userModel.removeWebsite(userId, websiteId);
         });
-    // for (var w in websites) {
-    //     if (websites[w]._id === websiteId) {
-    //         websites.splice(w, 1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // return false;
 }

@@ -14,8 +14,8 @@
             <li class="list-group-item active">
                 <div class="row">
                     <div class="col-xs-5 col-sm-3 col-xs-6">Name</div>
-                    <div class="col-xs-5 col-sm-3 hidden-xs">Updated</div>
-                    <div class="col-sm-3 hidden-xs">Visits</div>
+                    <div class="col-xs-5 col-sm-3 hidden-xs">Created</div>
+                    <div class="col-sm-3 hidden-xs">Developer</div>
                     <div class="col-xs-6 col-sm-3">
                         <a href="#!/user/{{model.userId}}/website/new">
                             <span class="glyphicon glyphicon-plus pull-right"></span>
@@ -30,8 +30,8 @@
                             {{website.name}}
                         </a>
                     </div>
-                    <div class="col-xs-5 col-sm-3 hidden-xs">2017-07-05</div>
-                    <div class="col-sm-3 hidden-xs">3,123,234</div>
+                    <div class="col-xs-5 col-sm-3 hidden-xs">{{website.dateCreated | date}}</div>
+                    <div class="col-sm-3 hidden-xs">{{website._user.username}}</div>
                     <div class="col-sm-3 col-xs-6">
                         <a href="#!/user/{{model.userId}}/website/{{website._id}}">
                             <span class="glyphicon glyphicon-pencil pull-right"></span>

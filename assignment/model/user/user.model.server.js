@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var userSchema = require('./user.schema.server');
-var db = require('../database');
+// var db = require('../database');
 var userModel = mongoose.model("UserModel", userSchema);
 userModel.createUser = createUser;
 userModel.findUserById = findUserById;
@@ -45,8 +45,8 @@ function removeWebsite(userId, websiteId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            var index = user._websites.indexOf(websiteId);
-            user._websites.splice(index, 1);
+            var index = user.websites.indexOf(websiteId);
+            user.websites.splice(index, 1);
             return user.save();
         });
 }
@@ -55,7 +55,7 @@ function addWebsite(userId, websiteId) {
     return userModel
         .findById(userId)
         .then(function (user) {
-            user._websites.push(websiteId);
+            user.websites.push(websiteId);
             return user.save();
-        })
+        });
 }

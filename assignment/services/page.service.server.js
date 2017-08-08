@@ -1,10 +1,6 @@
 var app = require("../../express");
 var pageModel = require('../model/page/page.model.server');
-var pages = [
-    {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-    {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-    {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
-];
+
 
 // http handlers
 app.post("/api/website/:websiteId/page", createPage);
@@ -16,21 +12,21 @@ app.delete("/api/page/:pageId", deletePage);
 function createPage(req, res) {
     var page = req.body;
     var websiteId = req.params.websiteId;
-    page._id = (new Date()).getTime() + "";
-    page.websiteId = websiteId;
-    pages.push(page);
-    res.json(page);
+    pageModel
+        .createPage(websiteId, page)
+        .then(function (page) {
+            res.json(page);
+        }, function (err) {
+            res.sendStatus(500).send(err);
+        });
 }
 
 function findAllPagesForWebsite(req, res) {
     var websiteId = req.params.websiteId;
-    var _pages = [];
-    for (var p in pages) {
-        if (pages[p].websiteId === websiteId) {
-            _pages.push(pages[p]);
-        }
-    }
-    res.json(_pages);
+    pageModel.findAllPagesForWebsite(websiteId)
+        .then(function (pages) {
+            res.json(pages);
+        });
 
 }
 
