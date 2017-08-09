@@ -12,7 +12,7 @@ module.exports = pageModel;
 
 
 function addWidget(pageId, widgetId) {
-    return userModel
+    return pageModel
         .findById(pageId)
         .then(function (page) {
             page.widgets.push(widgetId);

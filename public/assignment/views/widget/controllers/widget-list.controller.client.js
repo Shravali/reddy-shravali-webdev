@@ -39,7 +39,6 @@
             return $sce.trustAsResourceUrl(embedUrl);
         }
 
-
     }
 
-});
+})();

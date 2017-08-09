@@ -1,5 +1,6 @@
 var app = require("../../express");
 var widgetModel = require('../model/widget/widget.model.server');
+var userModel = require('../model/user/user.model.server');
 var multer = require('multer');
 var upload = multer({ dest: __dirname+'/../../public/uploads' });
 var widgets = [
@@ -69,23 +70,24 @@ function sortWidget(req, res) {
 }
 
 function createWidget(req, res) {
+    // var widget =
     var widget = req.body;
     var pageId = req.params.pageId;
-    widget._id = (new Date()).getTime() + "";
-    widget.pageId = pageId;
-    widgets.push(widget);
-    res.json(widget);
+    widgetModel
+        .createWidget(pageId, widget)
+        .then(function (widget) {
+            res.json(widget);
+        }, function (err) {
+            res.sendStatus(500).send(err);
+        });
 }
 
 function findAllWidgetsForPage(req, res) {
     var pageId = req.params.pageId;
-    var _widgets = [];
-    for (var w in widgets) {
-        if (widgets[w].pageId === pageId) {
-            _widgets.push(widgets[w]);
-        }
-    }
-    res.json(_widgets);
+    widgetModel.findAllWidgetsForPage(pageId)
+        .then(function (widgets) {
+            res.json(widgets);
+        });
 
 }
 
@@ -95,26 +97,18 @@ function findWidgetById(req, res) {
         .then(function (widget) {
             res.json(widget);
         });
-    // for (var w in widgets) {
-    //     if (widgets[w]._id === widgetId) {
-    //         res.json(widgets[w]);
-    //     }
-    // }
-    // res.sendStatus(404);
-
 }
 
 function updateWidget(req, res) {
     var widgetId = req.params.widgetId;
     var widget = req.body;
-    for (var w in widgets) {
-        if (widgets[w]._id === widgetId) {
-            widgets[w] = widget;
-            res.send(widget);
-            return;
-        }
-    }
-    res.sendStatus(404);
+    widgetModel
+        .updateWidget(widgetId, widget)
+        .then(function (status) {
+            res.json(status);
+        }, function (err) {
+            res.sendStatus(404).send(err);
+        });
 
 }
 
@@ -125,13 +119,6 @@ function deleteWidget(req, res) {
         .then(function (status) {
             res.sendStatus(200);
         });
-    // for (var w in widgets) {
-    //     if (widgets[w]._id === widgetId) {
-    //         widgets.splice(w, 1);
-    //         res.sendStatus(200);
-    //         return;
-    //     }
-    // }
-    // res.sendStatus(404);
+
 
 }

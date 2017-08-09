@@ -28,11 +28,12 @@
 
 
         function editHeader() {
-            model.widget.widgetType = "HEADING";
+            model.widget.type = "HEADING";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
                     model.widget = response.data;
+                    console.log("from widget new controller");
                 })
                 .then(function () {
                     $location.url("user/" + model.userId + "/website/" +
@@ -42,7 +43,7 @@
         }
 
         function editImage() {
-            model.widget.widgetType = "IMAGE";
+            model.widget.type = "IMAGE";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
@@ -56,7 +57,7 @@
         }
 
         function editYoutube() {
-            model.widget.widgetType = "YOUTUBE";
+            model.widget.type = "YOUTUBE";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
@@ -69,7 +70,7 @@
 
         }
         function editHtml() {
-            model.widget.widgetType = "HTML";
+            model.widget.type = "HTML";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
@@ -83,7 +84,7 @@
         }
 
         function editText() {
-            model.widget.widgetType = "TEXT";
+            model.widget.type = "TEXT";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
