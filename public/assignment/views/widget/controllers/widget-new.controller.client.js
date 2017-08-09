@@ -84,7 +84,7 @@
         }
 
         function editText() {
-            model.widget.type = "TEXT";
+            model.widget.type = "INPUT";
             widgetService
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {

@@ -54,5 +54,7 @@ function updatePage(pageId, page){
 }
 
 function deletePage(pageId) {
+    return pageModel.remove({_id: pageId});
 
 }
+

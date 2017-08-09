@@ -1,23 +1,23 @@
 var app = require("../../express");
 var widgetModel = require('../model/widget/widget.model.server');
-var userModel = require('../model/user/user.model.server');
+var pageModel = require('../model/page/page.model.server');
 var multer = require('multer');
 var upload = multer({ dest: __dirname+'/../../public/uploads' });
-var widgets = [
-    {"_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-    {"_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    {
-        "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-        "url": "http://lorempixel.com/400/200/"
-    },
-    {"_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-    {"_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-    {
-        "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-        "url": "https://youtu.be/AM2Ivdi9c4E"
-    },
-    {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-];
+// var widgets = [
+//     {"_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+//     {"_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+//     {
+//         "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+//         "url": "http://lorempixel.com/400/200/"
+//     },
+//     {"_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+//     {"_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+//     {
+//         "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+//         "url": "https://youtu.be/AM2Ivdi9c4E"
+//     },
+//     {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
+// ];
 
 // http handlers
 app.post("/api/page/:pageId/widget", createWidget);
@@ -45,28 +45,31 @@ function uploadImage(req, res) {
     var size          = myFile.size;
     var mimetype      = myFile.mimetype;
 
-    for (var w in widgets) {
-        if (widgets[w]._id === widgetId) {
-            var widget = widgets[w];
-        }
-    }
-    widget.url = '/uploads/' + filename;
+    widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            widget.url = '/uploads/' + filename;
+            var callbackUrl   = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
+            res.redirect(callbackUrl);
+        });
 
-
-    var callbackUrl   = "/assignment/#!/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
-    res.redirect(callbackUrl);
 }
 
 function sortWidget(req, res) {
-
+    var pageId = req.params.pageId;
     var start = req.query.initial;
     var stop = req.query.final;
-    var widget = widgets[start];
-    console.log(start);
-    console.log(stop);
-    widgets.splice(start, 1);
-    widgets.splice(stop, 0, widget);
-    res.json(widgets);
+    widgetModel
+        .reorderWidget(pageId, start, stop)
+        .then(function (widgets) {
+            console.log("sorted widgets");
+            console.log(widgets);
+            res.json(widgets)
+        }, function (err) {
+            res.sendStatus(500).send(err);
+            console.log(err);
+
+    });
 }
 
 function createWidget(req, res) {
