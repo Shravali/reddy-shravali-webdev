@@ -32,6 +32,7 @@
         }
 
         function getYouTubeEmbedUrl(youTubeLink) {
+
             var embedUrl = "https://www.youtube.com/embed/";
             var linkParts = youTubeLink.split('/');
             var id = linkParts[linkParts.length - 1];
