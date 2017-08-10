@@ -65,10 +65,11 @@ function reorderWidget(pageId, start, end){
     // widgets.splice(start, 1);
     // widgets.splice(stop, 0, widget);
     return pageModel
-        .findPageById(pageId, function(page) {
+        .findPageById(pageId)
+        .then (function(page) {
             page.widgets.splice(end, 0, page.widgets.splice(start, 1)[0]);
-            return pageModel.update({_id: pageId},
-                {$set: page});
+            // doc.markModified('widgets');
+            return page.save();
         });
 
 }
