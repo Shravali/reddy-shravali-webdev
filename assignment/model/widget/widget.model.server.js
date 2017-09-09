@@ -51,7 +51,7 @@ function updateWidget (widgetId, widget){
         {$set: widget});
 }
 
-//t
+
 function deleteWidget(widgetId){
     return widgetModel.remove({_id: widgetId})
         .then(function (status) {
@@ -60,10 +60,6 @@ function deleteWidget(widgetId){
 }
 
 function reorderWidget(pageId, start, end){
-    // console.log(start);
-    // console.log(stop);
-    // widgets.splice(start, 1);
-    // widgets.splice(stop, 0, widget);
     return pageModel
         .findPageById(pageId)
         .then (function(page) {
